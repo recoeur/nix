@@ -30,9 +30,9 @@
     link = config.lib.file.mkOutOfStoreSymlink;
     config-root = "/home/alexg/Code/nix/home/config";
   in {
-    ".p10k.zsh".source = link "${config-root}/config/p10k.zsh";
-    ".config/alacritty/alacritty.toml".source = link "${config-root}/config/alacritty.toml";
-    ".config/tmux/tmux.conf".source = link "${config-root}/config/tmux.conf";
+    ".p10k.zsh".source = link "${config-root}/p10k.zsh";
+    ".config/alacritty".source = link "${config-root}/alacritty";
+    ".config/tmux".source = link "${config-root}/tmux";
   };
   
   programs.direnv = {
