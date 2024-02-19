@@ -1,25 +1,34 @@
 { config, pkgs, ... }:
 
 {
+  programs.home-manager.enable = true;
+
   home.stateVersion = "23.11";
   home.username = "alexg";
   home.homeDirectory = "/home/alexg";
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   home.packages = with pkgs; [ 
+    alacritty
     beekeeper-studio
-    fd
-    ripgrep
-    vscode-fhs
+    nixpkgs-fmt
+    tmux
     transmission-gtk
     vlc
-    alacritty
-    tmux
+    vscode-fhs
+  ];
+
+  imports = [ 
+    ./programs/neovim
   ];
 
   home.file =
   let
     link = config.lib.file.mkOutOfStoreSymlink;
-    config-root = "/home/alexg/Code/nix";
+    config-root = "/home/alexg/Code/nix/home/config";
   in {
     ".p10k.zsh".source = link "${config-root}/config/p10k.zsh";
     ".config/alacritty/alacritty.toml".source = link "${config-root}/config/alacritty.toml";
@@ -30,8 +39,6 @@
     enable = true;
     nix-direnv.enable = true;
   };
-
-  programs.home-manager.enable = true;
 
   programs.git = {
     enable = true;
