@@ -7,22 +7,17 @@
   home.username = "alexg";
   home.homeDirectory = "/home/alexg";
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
   home.packages = with pkgs; [ 
     alacritty
     beekeeper-studio
     nixpkgs-fmt
     tmux
     transmission-gtk
-    vlc
     vscode-fhs
   ];
 
   imports = [ 
-    ./programs/neovim
+    ./programs/helix
   ];
 
   home.file =
