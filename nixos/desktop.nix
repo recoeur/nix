@@ -1,6 +1,10 @@
 { config, pkgs, inputs, ... }:
 
-{ imports = [ ./hardware.nix ];
+{ 
+  imports = [ 
+    ./hardware.nix 
+    ./modules/hyprland.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -115,10 +119,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [

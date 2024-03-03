@@ -18,6 +18,7 @@
 
   imports = [ 
     ./programs/helix
+    ./programs/hyprland
   ];
 
   home.file =
