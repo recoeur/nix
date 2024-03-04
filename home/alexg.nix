@@ -10,14 +10,15 @@
   home.packages = with pkgs; [ 
     alacritty
     beekeeper-studio
-    nixpkgs-fmt
+    fd
+    foliate
+    ripgrep
     tmux
     transmission-gtk
     vscode-fhs
   ];
 
   imports = [ 
-    ./programs/helix
     ./programs/hyprland
   ];
 
@@ -41,6 +42,25 @@
     userName = "Alex Gravem";
     userEmail = "recoeur@proton.me";
     extraConfig = { pull = { rebase = true; }; };
+  };
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs29;
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+    viAlias = true;
+    extraPackages = with pkgs; [
+	gcc
+	gnumake
+	unzip
+	ripgrep
+	nodejs_21
+    ];
   };
 
   programs.zsh = {

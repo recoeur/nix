@@ -6,10 +6,12 @@
     ./modules/hyprland.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" "repl-flake" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true; boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true; 
+  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.binfmt.registrations.appimage = {
     wrapInterpreterInShell = false;
     interpreter = "${pkgs.appimage-run}/bin/appimage-run";
@@ -124,6 +126,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     chromium
+    tor-browser
   ];
 
   # Enable the OpenSSH daemon. 
